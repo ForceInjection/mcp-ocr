@@ -1,0 +1,78 @@
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 目录文件
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Python 编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python 包和虚拟环境
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+parts/
+.installed.cfg
+lib/
+lib64/
+
+# 虚拟环境
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# 安装包
+*.tar.gz
+*.egg
+
+# 单元测试和覆盖率
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+htmlcov/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 项目特定文件
+logs/
+.secrets/
+account.md
+
+# 配置文件（可根据需要取消注释）
+# local_settings.py
+# settings/local.py
+
+# 数据库文件（如果有的话）
+*.db
+*.sqlite3
+
+# 临时文件
+*.log
+*.tmp
+*.temp

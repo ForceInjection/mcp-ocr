@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "mcp-ocr": {
+      "command": "python",
+      "args": ["/Users/wangtianqing/Project/mcp/mcp-ocr/src/mcp_ocr_server/mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/Users/wangtianqing/Project/mcp/mcp-ocr/src"
+      }
+    }
+  }
+}

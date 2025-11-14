@@ -1,0 +1,37 @@
+# MCP OCR Server 依赖包
+# 版本要求基于当前项目使用的库
+
+# 核心 MCP 包
+mcp>=1.21.0
+
+# Kimi API 访问 (OpenAI SDK)
+openai>=1.30.5
+
+# 标准库补充
+requests>=2.31.0
+urllib3>=2.0.0
+
+# 配置和日志管理
+python-dotenv>=1.0.0
+
+# 开发工具 (可选)
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# 测试框架
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# 类型注解支持
+typing-extensions>=4.8.0
+
+# 文件处理
+pathlib>=1.0.0
+
+# 注意: 以下包通常已包含在 Python 标准库中，此处列出以供参考
+# logging>=0.4.9.6
+# json>=2.0.9
+# os>=0.2.14
+# sys>=3.10.0
+# time>=3.10.0
