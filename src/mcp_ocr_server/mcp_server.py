@@ -37,6 +37,9 @@ if not logger.handlers:
 CREDENTIALS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".secrets")
 CREDENTIALS_FILE = os.path.join(CREDENTIALS_DIR, "credentials.json")
 
+# 文件大小限制（10MB）
+MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+
 
 def validate_api_key_format(api_key: str) -> bool:
     """验证 API 密钥格式"""
@@ -82,7 +85,7 @@ class KimiFileOCR:
         # 优先使用传入的 API 密钥，其次环境变量，最后配置文件
         self.api_key = api_key or os.environ.get("MOONSHOT_API_KEY") or self._get_api_key_from_config()
         self.base_url = (base_url or os.environ.get("KIMI_BASE_URL") or "https://api.moonshot.cn/v1").rstrip("/")
-        self.timeout_seconds = int(timeout_seconds or os.environ.get("REQUEST_TIMEOUT_SECONDS", "10"))
+        self.timeout_seconds = int(timeout_seconds or os.environ.get("REQUEST_TIMEOUT_SECONDS", "30"))
         
         if not self.api_key:
             raise RuntimeError("missing MOONSHOT_API_KEY")
@@ -109,11 +112,16 @@ class KimiFileOCR:
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"file not found: {file_path}")
         
+        # 检查文件大小
+        file_size = os.path.getsize(file_path)
+        if file_size > MAX_FILE_SIZE:
+            raise ValueError(f"文件大小超过限制: {file_size} 字节 (最大支持 {MAX_FILE_SIZE} 字节，约10MB)")
+        
         mime_type, _ = mimetypes.guess_type(file_path)
         if not mime_type or not mime_type.startswith("image/"):
             raise ValueError(f"not an image file: {file_path}")
         
-        logger.info("extracting text from image: %s", file_path)
+        logger.info("extracting text from image: %s (size: %d bytes)", file_path, file_size)
         
         try:
             with open(file_path, "rb") as f:
